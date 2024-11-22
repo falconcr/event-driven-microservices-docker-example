@@ -7,6 +7,17 @@ const config = require('../environment/config');
 const authController = {
   authenticate: async (ctx) => {
     try {
+      console.log("1 falcon");
+      
+/*      
+      const hashedPassword = bcrypt.hashSync(ctx.request.body.password,  8);
+     
+      await Auth.create({
+        role: ctx.request.body.role,
+        emailAddress: ctx.request.body.emailAddress,
+        password: hashedPassword,
+      });
+*/
       const user = await Auth.findOne({ emailAddress: ctx.request.body.emailAddress });
       if (!user) ctx.throw(404);
       if (!(bcrypt.compareSync(ctx.request.body.password, user.password))) {
@@ -18,6 +29,7 @@ const authController = {
         ctx.body = { auth: true, token };
       }
     } catch (err) {
+      console.log("4");
       ctx.throw(500);
     }
   },

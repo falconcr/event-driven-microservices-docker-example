@@ -23,7 +23,6 @@ services:
       - rabbitmq
     env_file: "app.env"
 
-  
   mongofalcone:
     image: mongo
     restart: always
@@ -32,7 +31,7 @@ services:
       - 27017:27017
     environment:
       - MONGO_INITDB_ROOT_USERNAME=falcon
-      - MONGO_INITDB_DATABASE=auth
+      - MONGO_INITDB_DATABASE=admin
       - MONGO_INITDB_ROOT_PASSWORD=Falconerocks
     volumes:
       - ./mongo_data/:/data/db/
